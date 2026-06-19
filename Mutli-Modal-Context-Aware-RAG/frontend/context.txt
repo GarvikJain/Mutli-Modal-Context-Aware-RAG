@@ -1,0 +1,49 @@
+GraphRAG UI - Document Intelligence Interface
+=============================================
+
+Project Overview
+----------------
+GraphRAG UI is a premium, visual document intelligence application. It implements a hybrid retrieval system that combines vector database search with knowledge graph traversals, allowing users to ask questions about uploaded documents and trace answers back to specific cited sources (pages, tables, and figures) visually.
+
+Tech Stack & Libraries
+----------------------
+- Bundler & Dev Server: Vite
+- Core Framework: React
+- Graph Visualization: ReactFlow (for rendering interactive nodes, edges, legends, and minimaps)
+- Iconography: Lucide React
+- Markdown Parsing: React Markdown
+- Animation: Framer Motion
+- Router: React Router DOM (v6)
+
+Theme & Design System
+---------------------
+The application uses a retro neo-brutalist / cartoon illustration style defined through CSS variables in index.css.
+- Background Wallpaper: A warm retro peach-cream color (#FFF7F0) tiled with a low-contrast orange-gray grid pattern.
+- Solid Outline Layout: Both the Home and Dashboard pages are styled to float on top of the grid wallpaper as solid white panels with thick 3px solid black outlines, and bold 8px 8px 0px solid offset black shadows (no blur).
+- Color Palette:
+  - Inside App Canvas: Solid white (#ffffff)
+  - Secondary surfaces & hover states: Soft sand-cream (#FAF1E6)
+  - Outlines & Borders: Thick solid black (#000000)
+  - Primary Accent (Buttons/CTA): Warm Orange (#ff9f43)
+  - Secondary Accent (Active navigation): Warm Peach (#fdba74)
+  - Graph Nodes: Custom retro color scheme: warm peach (normal), warm orange (used), and coral red (danger).
+
+Page Layouts & Routes
+---------------------
+1. Home (Route: "/")
+   - A landing screen presenting the core benefits of GraphRAG (Hybrid Retrieval, Graph Explorer, and Cited Answers).
+   - Features an interactive, responsive Canvas network background (`NetworkBackground.jsx`) that simulates floating document knowledge nodes and connection edges reacting to mouse movement.
+   - Designed as a solid neo-brutalist panel card showcasing feature callouts and an orange primary CTA to launch the dashboard.
+   - Brand logo is a stamp-like badge enclosing the Lucide Brain icon in black.
+
+2. Dashboard (Route: "/dashboard")
+   - A three-pane layout serving as the main interactive workspace.
+   - Left Sidebar: Contains navigation tabs. Active items are highlighted in lilac violet with thick borders and offset shadows. Includes a user profile card and settings interface.
+   - Center Chat Panel: Houses conversation bubbles and citations. Features a floating capsule-style input bar with solid outlines, and a mint green circular send button.
+   - Right Graph Panel: Contains an interactive, zoomable, and pannable ReactFlow document knowledge graph. Nodes are rendered with solid black borders and colored offset shadows.
+
+Workspace & Layout Toggles
+--------------------------
+- Lifted active tab state to Dashboard.jsx to synchronize the interface.
+- Clicking the "Graph Explorer" tab in the sidebar shifts the workspace to a widescreen graph layout (taking up 100% of the main panel).
+- Clicking other tabs (e.g. Chat History) switches back to the split-screen layout, showing the chat thread side-by-side with a secondary graph panel.

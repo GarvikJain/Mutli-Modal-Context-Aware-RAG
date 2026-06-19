@@ -1,0 +1,28 @@
+export const dummyGraphData = {
+  nodes: [
+    { id: '1', type: 'heading', label: 'Chapter 3: Operations', page: 17, content: 'Chapter 3 introduces the operational restructuring undertaken in FY2025.' },
+    { id: '2', type: 'paragraph', label: 'Revenue Growth ¶', page: 18, content: 'Revenue increased by 15% following the consolidation of regional warehouses.' },
+    { id: '3', type: 'heading', label: 'Warehouse Strategy', page: 19, content: 'Describes the regional consolidation strategy across five distribution hubs.' },
+    { id: '4', type: 'paragraph', label: 'Hybrid Logistics ¶', page: 20, content: 'A hybrid logistics model combining owned and third-party fleets was introduced.' },
+    { id: '5', type: 'table', label: 'Table 2 — Cost Breakdown', page: 21, content: 'Operating cost breakdown by region, FY2024 vs FY2025, showing a 9% average decrease.' },
+    { id: '6', type: 'paragraph', label: 'Overhead Reduction ¶', page: 22, content: 'Fixed overhead was reduced by 12% via headcount optimization in logistics.' },
+    { id: '7', type: 'figure', label: 'Figure 4 — Network Diagram', page: 23, content: 'Diagram illustrating the new hybrid logistics network across regional hubs.' },
+    { id: '8', type: 'heading', label: 'Chapter 4: Financials', page: 25, content: 'Chapter 4 covers margin improvement enabled by the operational changes.' },
+    { id: '9', type: 'paragraph', label: 'Margin Improvement ¶', page: 26, content: 'Gross margin improved by 3.2 percentage points quarter over quarter.' },
+    { id: '10', type: 'table', label: 'Table 3 — Quarterly Revenue', page: 26, content: 'Quarterly revenue broken down by business segment.' },
+  ],
+  edges: [
+    { id: 'e1-2', source: '1', target: '2', kind: 'structural' },
+    { id: 'e1-3', source: '1', target: '3', kind: 'structural' },
+    { id: 'e3-4', source: '3', target: '4', kind: 'structural' },
+    { id: 'e2-5', source: '2', target: '5', kind: 'semantic' },
+    { id: 'e4-7', source: '4', target: '7', kind: 'structural' },
+    { id: 'e3-6', source: '3', target: '6', kind: 'structural' },
+    { id: 'e2-6', source: '2', target: '6', kind: 'semantic' },
+    { id: 'e1-8', source: '1', target: '8', kind: 'semantic' },
+    { id: 'e8-9', source: '8', target: '9', kind: 'structural' },
+    { id: 'e9-10', source: '9', target: '10', kind: 'structural' },
+    { id: 'e2-9', source: '2', target: '9', kind: 'semantic' },
+    { id: 'e5-10', source: '5', target: '10', kind: 'semantic' },
+  ],
+}

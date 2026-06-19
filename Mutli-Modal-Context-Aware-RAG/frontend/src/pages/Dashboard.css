@@ -1,0 +1,18 @@
+.dashboard {
+  height: calc(100vh - 48px);
+  margin: 24px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 3px solid #000000;
+  box-shadow: 8px 8px 0px #000000;
+  overflow: hidden;
+}
+
+.dashboard-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  background: #ffffff;
+}
