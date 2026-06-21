@@ -1,71 +1,123 @@
-# Graph-Augmented RAG
+# Graph-Augmented RAG (GraphRAG)
 
-A powerful, multimodal Graph-Augmented Retrieval-Augmented Generation (RAG) system. This application parses complex documents (including images and tables), builds an interactive knowledge graph, and uses a Vision-Language Model (Groq) to provide highly accurate, visually-cited answers.
+A powerful, multimodal Graph-Augmented Retrieval-Augmented Generation (RAG) system. This application parses complex documents (including images and tables), builds an interactive knowledge graph, and uses a Vision-Language Model (Groq / local MLX VLM) to provide highly accurate, visually-cited answers.
 
 ## Architecture
 - **Backend:** Python (FastAPI), PyTorch, ChromaDB, IBM Docling, NetworkX
 - **Frontend:** React, Vite, ReactFlow
-- **Database:** MongoDB
+- **Database:** MongoDB (Optional, falls back to in-memory for local-only execution)
 - **LLM:** Groq API
 
 ---
 
-## 🚀 Setup Guide (For Local Development)
+## 🚀 Setup Guide
 
-Because this application runs heavy Machine Learning embedding models (PyTorch, SentenceTransformers), it requires at least **2GB to 4GB of RAM** to run smoothly. It is highly recommended to run the backend locally rather than on free-tier cloud providers (which typically limit RAM to 512MB).
+Because this application runs heavy Machine Learning embedding models (PyTorch, SentenceTransformers), it requires at least **2GB to 4GB of RAM** to run smoothly. It is highly recommended to run the backend locally.
 
 ### 1. Prerequisites
-You will need the following installed on your machine:
-- **Python 3.9+**
+Before starting, ensure you have installed:
+- **Python 3.9+** (Ensure Python is added to your system environment variables/PATH)
 - **Node.js 18+**
 - **Git**
 
-You will also need two API keys:
-1. **Groq API Key:** For the lightning-fast LLM inference.
-2. **MongoDB URI:** For storing the GraphRAG document state and chat history.
+You will also need:
+1. **Groq API Key:** For lightning-fast LLM inference.
+2. **MongoDB URI (Optional):** For storing the GraphRAG document state and chat history. If not provided, the application will run in local-only in-memory mode (data will not persist after restarting the backend).
 
-### 2. Backend Setup
-The backend handles the ML inference, document parsing, and database logic.
+---
 
-1. **Clone the repository:**
+### 2. OS-Specific Backend Setup
+
+Choose the guide below matching your operating system:
+
+#### 🍎 Option A: macOS Setup Guide
+
+1. **Open Terminal** and navigate to the project's backend directory:
    ```bash
-   git clone https://github.com/ryanfer123/GraphRAG.git
-   cd GraphRAG
+   cd backend
    ```
 
 2. **Create and activate a virtual environment:**
    ```bash
    python3 -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   source venv/bin/activate
    ```
 
 3. **Install the required Python dependencies:**
-   *Note: This will download PyTorch and may take a few minutes depending on your internet connection.*
-   ```bash
-   pip install -r requirements.txt
-   ```
+   - **For Apple Silicon (M1/M2/M3/M4) Macs:**
+     Install the full dependency suite, including native local MLX Vision-Language Model acceleration:
+     ```bash
+     pip install -r requirements.txt
+     ```
+   - **For Intel Macs:**
+     Install the lightweight dependency suite (excludes Apple Silicon-specific MLX packages):
+     ```bash
+     pip install -r Win_requirements.txt
+     ```
 
-4. **Configure your Environment Variables:**
-   Create a new file named `.env` in the root directory of the project and add your keys:
+4. **Configure Environment Variables:**
+   Create a new file named `.env` inside the `backend` directory (`backend/.env`) and add your keys:
    ```env
    GROQ_API_KEY=your_groq_api_key_here
-   MONGO_URI=your_mongodb_connection_string_here
+   MONGO_URI=your_mongodb_connection_string_here  # Optional: Leave empty or omit for in-memory mode
    ```
 
 5. **Start the Python Backend:**
+   With the virtual environment active, run the following command from the `backend` directory:
    ```bash
-   python -m uvicorn api:app --host 127.0.0.1 --port 8000 --reload --env-file .env
+   python -m uvicorn app.api:app --host 127.0.0.1 --port 8000 --reload --env-file .env
    ```
-   *The API will now be running at `http://127.0.0.1:8000`.*
+   *The API server will run at `http://127.0.0.1:8000`.*
+
+---
+
+#### 🪟 Option B: Windows Setup Guide
+
+1. **Open PowerShell or Command Prompt (CMD)** and navigate to the project's backend directory:
+   ```powershell
+   cd backend
+   ```
+
+2. **Create and activate a virtual environment:**
+   ```powershell
+   python -m venv venv
+   
+   # If using PowerShell:
+   .\venv\Scripts\Activate.ps1
+   
+   # If using Command Prompt:
+   .\venv\Scripts\activate.bat
+   ```
+
+3. **Install the required Python dependencies:**
+   Windows must use `Win_requirements.txt` to avoid macOS-specific `mlx` and Windows-incompatible `uvloop` libraries:
+   ```powershell
+   pip install -r Win_requirements.txt
+   ```
+
+4. **Configure Environment Variables:**
+   Create a new file named `.env` inside the `backend` directory (`backend/.env`) and add your keys:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   MONGO_URI=your_mongodb_connection_string_here  # Optional: Leave empty or omit for in-memory mode
+   ```
+
+5. **Start the Python Backend:**
+   With the virtual environment active, run the following command from the `backend` directory:
+   ```powershell
+   python -m uvicorn app.api:app --host 127.0.0.1 --port 8000 --reload --env-file .env
+   ```
+   *The API server will run at `http://127.0.0.1:8000`.*
 
 ---
 
 ### 3. Frontend Setup
+
 The frontend is a Vite-powered React application with interactive ReactFlow graphs.
 
-1. **Open a new terminal tab** and navigate to the frontend directory:
+1. **Open a new terminal / command prompt window** and navigate to the frontend directory:
    ```bash
-   cd Mutli-Modal-Context-Aware-RAG/frontend
+   cd frontend
    ```
 
 2. **Install Node dependencies:**
@@ -79,12 +131,12 @@ The frontend is a Vite-powered React application with interactive ReactFlow grap
    ```
 
 4. **Access the Application:**
-   Open your browser and navigate to the URL provided by Vite (usually `http://localhost:5180`). 
+   Open your browser and navigate to the URL provided by Vite (usually `http://localhost:5180`).
 
 ---
 
 ## 🛠️ Usage
-1. **Sign Up / Login:** Create an account on the local dashboard.
+1. **Sign Up / Login:** Create an account on the local dashboard (works in both MongoDB and in-memory fallback modes).
 2. **Upload a Document:** Navigate to the Dashboard and upload a PDF or DOCX. The backend will parse the text, tables, and images, embed them into ChromaDB, and build a NetworkX knowledge graph.
 3. **Explore the Graph:** Click on the generated nodes in the right-hand panel to see semantic relationships and entity extraction.
 4. **Chat:** Ask questions about the document. The system will retrieve the most relevant semantic chunks and graph edges, and the LLM will generate an answer with inline citations (e.g., `(Fig. 1)` or `(Page 3)`).
