@@ -1,0 +1,330 @@
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border-right: 2px solid #000000;
+  overflow-y: auto;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 6px;
+  border-bottom: 2px solid #000000;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: 2px solid transparent;
+  color: var(--text-dim);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s, color 0.1s, border-color 0.1s, box-shadow 0.1s, transform 0.1s;
+}
+
+.sidebar-item:hover {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: #000000;
+}
+
+.sidebar-item.is-active {
+  background: var(--accent-2);
+  color: #000000;
+  border-color: #000000;
+  box-shadow: 2px 2px 0px #000000;
+}
+.sidebar-item.is-active:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #000000;
+}
+
+.sidebar-panel {
+  padding: 14px 12px;
+  flex: 1;
+}
+
+.sidebar-list-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-dim);
+  margin: 4px 6px 10px;
+}
+
+.doc-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.doc-row:hover {
+  background: var(--surface-2);
+}
+
+.doc-row.is-active {
+  background: var(--surface-2);
+  border-left: 3px solid var(--accent-2);
+  padding-left: 5px;
+}
+
+.doc-row-icon {
+  color: var(--accent-2);
+  flex-shrink: 0;
+}
+
+.doc-row-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.doc-row-name {
+  font-size: 12.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-row-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.doc-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+.doc-badge-indexed {
+  background: rgba(61, 220, 151, 0.12);
+  color: var(--node-green);
+}
+
+.doc-badge-processing {
+  background: rgba(242, 193, 78, 0.12);
+  color: var(--node-yellow);
+}
+
+.doc-badge-active {
+  background: var(--accent-2);
+  color: #fff;
+}
+
+.doc-badge-inactive {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-dim);
+}
+
+.doc-delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  opacity: 0;
+  transition: all 0.2s;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  margin-left: 6px;
+}
+
+.doc-row:hover .doc-delete-btn {
+  opacity: 1;
+}
+
+.doc-delete-btn:hover {
+  background: rgba(255, 0, 0, 0.1);
+  color: red;
+}
+
+.history-row {
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  color: var(--text-dim);
+  cursor: pointer;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.new-chat-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin: 0 0 8px 0;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.new-chat-btn:hover {
+  background: var(--accent-2);
+  color: #000;
+  border-color: #000;
+}
+
+.history-row:hover {
+  background: var(--surface-2);
+}
+
+.history-row.is-active {
+  background: var(--surface-2);
+  color: var(--text);
+  border-left: 2px solid var(--accent-2);
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+  padding: 6px 6px;
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sidebar-hint {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  padding: 10px 6px 0;
+  line-height: 1.5;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 6px;
+  font-size: 12.5px;
+  border-bottom: 1px solid var(--border);
+}
+
+.setting-row .mono {
+  color: var(--accent-2);
+  font-size: 11.5px;
+}
+
+.sidebar-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--danger);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 999999;
+  box-shadow: 4px 4px 0px #000000;
+  max-width: 400px;
+  text-align: center;
+  border: 2px solid #000;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.sidebar-confirm-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.sidebar-confirm-box {
+  background: var(--bg);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0px #000;
+  text-align: center;
+  max-width: 220px;
+}
+
+.sidebar-confirm-box p {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.confirm-btn {
+  flex: 1;
+  padding: 6px 0;
+  border: 2px solid #000;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.confirm-btn.danger {
+  background: #ff4757;
+  color: white;
+}
+
+.confirm-btn.danger:hover {
+  background: #ff6b81;
+}
+
+.confirm-btn.cancel {
+  background: var(--surface-1);
+}
+
+.confirm-btn.cancel:hover {
+  background: var(--surface-2);
+}
+
+.sidebar-footer {
+  padding: 10px;
+  border-top: 2px solid #000000;
+  margin-top: auto;
+}
+
+.sidebar-item.logout-btn:hover {
+  background: #ff4757;
+  color: #fff;
+  border-color: #000000;
+}
